@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme/ThemeMain.tres" type="Theme" id=1]
+[ext_resource path="res://Modules/Credits/Credits.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/Credits/UI_Credits_Assembly.png" type="Texture" id=3]
+
+[node name="Credits" type="TextureRect"]
+margin_right = 2880.0
+margin_bottom = 1620.0
+theme = ExtResource( 1 )
+texture = ExtResource( 3 )
+expand = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+visible = false
+margin_left = 232.0
+margin_top = 184.0
+margin_right = 320.0
+margin_bottom = 219.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button3" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 1833.0
+margin_top = 633.0
+margin_right = 1945.0
+margin_bottom = 743.0
+rect_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 1476.0
+margin_top = 857.0
+margin_right = 1870.0
+margin_bottom = 961.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="button_down" from="Button3" to="." method="_on_Button3_button_down"]
+[connection signal="button_down" from="Button2" to="." method="_on_Button2_button_down"]

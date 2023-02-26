@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://raw_assets/Ders_lay.png" type="Texture" id=1]
+[ext_resource path="res://raw_assets/UI/UI_Naughty.png" type="Texture" id=2]
+[ext_resource path="res://raw_assets/UI/UI_Nice.png" type="Texture" id=3]
+[ext_resource path="res://Modules/NPCs/FriendCat.gd" type="Script" id=4]
+[ext_resource path="res://scripts/cus_resources/FriendWithCatAchievement.tres" type="Resource" id=5]
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.7, 0.7 ), Vector2( 0.68, 0.69 ), Vector2( 0.7, 0.7 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 64.0
+
+[node name="FriendCat" type="Sprite"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+script = ExtResource( 4 )
+possibleAchievements = [ ExtResource( 5 ) ]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
+anims/Idle = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -16, 16 )
+shape = SubResource( 4 )
+
+[node name="UiNice" type="Sprite" parent="."]
+position = Vector2( 64, -64 )
+texture = ExtResource( 3 )
+
+[node name="UiNaughty" type="Sprite" parent="."]
+position = Vector2( 64, -64 )
+texture = ExtResource( 2 )

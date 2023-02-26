@@ -1,0 +1,422 @@
+[gd_scene load_steps=55 format=2]
+
+[ext_resource path="res://scenes/AchievementWindow.gd" type="Script" id=1]
+[ext_resource path="res://scenes/DayNight.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Achievements.gd" type="Script" id=3]
+[ext_resource path="res://theme/ThemeMain.tres" type="Theme" id=4]
+[ext_resource path="res://SoundEffectManager.gd" type="Script" id=5]
+[ext_resource path="res://scenes/UI.gd" type="Script" id=6]
+[ext_resource path="res://Modules/GameWorld/World.gd" type="Script" id=7]
+[ext_resource path="res://raw_assets/endingcards/UI_Polaroid_1.png" type="Texture" id=8]
+[ext_resource path="res://scripts/cus_resources/SurviveADayAchievement.tres" type="Resource" id=9]
+[ext_resource path="res://Modules/GameWorld/Settings.gd" type="Script" id=10]
+[ext_resource path="res://raw_assets/UI/Coots_UI_Small_Base_Naughty_Empty.png" type="Texture" id=11]
+[ext_resource path="res://Modules/NPCs/FriendCat.tscn" type="PackedScene" id=12]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_0.png" type="Texture" id=13]
+[ext_resource path="res://raw_assets/UI/Coots_UI_Small_Bar_Naughty_Full.png" type="Texture" id=14]
+[ext_resource path="res://raw_assets/AchievementWindow/UI_Polaroids_button_continue.png" type="Texture" id=15]
+[ext_resource path="res://raw_assets/UI/Coots_UI_Small_Base_Nice_Empty.png" type="Texture" id=16]
+[ext_resource path="res://raw_assets/AchievementWindow/UI_Polaroids_menu.png" type="Texture" id=17]
+[ext_resource path="res://raw_assets/UI/Coots_UI_Small_Bar_Nice_Full.png" type="Texture" id=18]
+[ext_resource path="res://Modules/Player/Coots.tscn" type="PackedScene" id=19]
+[ext_resource path="res://CatBed.tscn" type="PackedScene" id=20]
+[ext_resource path="res://SoundEffectPlayer.tscn" type="PackedScene" id=21]
+[ext_resource path="res://raw_assets/achievement_unlocked.wav" type="AudioStream" id=22]
+[ext_resource path="res://raw_assets/achievement unclocked.wav" type="AudioStream" id=23]
+[ext_resource path="res://raw_assets/Ghostrifter-Official-Purple-Dream.mp3" type="AudioStream" id=24]
+[ext_resource path="res://FoodBowl.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Toy.tscn" type="PackedScene" id=26]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Window_Outside.png" type="Texture" id=27]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer__wall_Front.png" type="Texture" id=28]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Window_Frame.png" type="Texture" id=29]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Bed.png" type="Texture" id=30]
+[ext_resource path="res://raw_assets/BG_Layer_BedsideTable_Near.png" type="Texture" id=31]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Room_Frame.png" type="Texture" id=32]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Bed_Cabinet.png" type="Texture" id=33]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_BedsideTable_Window.png" type="Texture" id=34]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Corner_shelf.png" type="Texture" id=35]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_PC_desk.png" type="Texture" id=36]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_CatTree.png" type="Texture" id=37]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Chair.png" type="Texture" id=38]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Plant.png" type="Texture" id=39]
+[ext_resource path="res://raw_assets/Lighting/BG_Lighting_window_morning.png" type="Texture" id=40]
+[ext_resource path="res://raw_assets/Lighting/BG_Lighting_window_day.png" type="Texture" id=41]
+[ext_resource path="res://raw_assets/Lighting/BG_Lighting_pc_night.png" type="Texture" id=42]
+[ext_resource path="res://raw_assets/Lighting/BG_Lighting_window_night.png" type="Texture" id=43]
+[ext_resource path="res://raw_assets/Lighting/BG_Lighting_window_Evening.png" type="Texture" id=44]
+[ext_resource path="res://raw_assets/AchievementWindow/UI_Polaroids_button_newday.png" type="Texture" id=45]
+[ext_resource path="res://raw_assets/AchievementWindow/Copy of UI_Credits_x.png" type="Texture" id=46]
+[ext_resource path="res://raw_assets/settings/UI_Settings_button_quit.png" type="Texture" id=47]
+[ext_resource path="res://raw_assets/settings/UI_Settings_button_restart.png" type="Texture" id=48]
+[ext_resource path="res://raw_assets/settings/Copy of UI_Credits_x.png" type="Texture" id=49]
+[ext_resource path="res://raw_assets/settings/UI_Settings_Menu.png" type="Texture" id=50]
+[ext_resource path="res://raw_assets/cat_hurt.wav" type="AudioStream" id=51]
+[ext_resource path="res://raw_assets/new_meow.wav" type="AudioStream" id=52]
+
+[sub_resource type="BitmapFont" id=6]
+
+[sub_resource type="StreamTexture" id=9]
+flags = 4
+load_path = "res://.import/BG_Lighting_BG_morning.png-38b7ec80cd8d6d6b7e60b932cfa9ef80.stex"
+
+[node name="World" type="Node2D"]
+script = ExtResource( 7 )
+dayInSeconds = 60
+sounds_for_manager = [ ExtResource( 22 ), ExtResource( 51 ), ExtResource( 52 ) ]
+possibleAchievements = [ ExtResource( 9 ) ]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+script = ExtResource( 2 )
+MORNING_COLOR = Color( 0.396078, 0.607843, 0.67451, 1 )
+EVENING_COLOR = Color( 0.713726, 0.607843, 0.564706, 1 )
+NIGHT_COLOR = Color( 0.415686, 0.380392, 0.745098, 1 )
+
+[node name="LightEffects" type="CanvasLayer" parent="CanvasModulate"]
+
+[node name="BgLightingWindowMorning" type="Sprite" parent="CanvasModulate/LightEffects"]
+modulate = Color( 1, 1, 1, 0.364706 )
+texture = ExtResource( 40 )
+centered = false
+
+[node name="BgLightingWindowDay" type="Sprite" parent="CanvasModulate/LightEffects"]
+visible = false
+texture = ExtResource( 41 )
+centered = false
+
+[node name="BgLightingWindowNight" type="Sprite" parent="CanvasModulate/LightEffects"]
+visible = false
+texture = ExtResource( 43 )
+centered = false
+
+[node name="BgLightingPcNight" type="Sprite" parent="CanvasModulate/LightEffects"]
+visible = false
+texture = ExtResource( 42 )
+centered = false
+
+[node name="BgLightingWindowEvening" type="Sprite" parent="CanvasModulate/LightEffects"]
+visible = false
+texture = ExtResource( 44 )
+centered = false
+
+[node name="DayTimer" type="Timer" parent="."]
+
+[node name="Environment" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
+
+[node name="PlaceholderBg" type="Sprite" parent="Environment"]
+texture = ExtResource( 13 )
+centered = false
+
+[node name="FoodBowl" parent="." instance=ExtResource( 25 )]
+position = Vector2( 1468, 725 )
+scale = Vector2( 1, 1 )
+interactsLeftForAchievement = 2
+
+[node name="FoodBowlWater" parent="." instance=ExtResource( 25 )]
+position = Vector2( 1371, 723 )
+scale = Vector2( 1, 1 )
+isFood = false
+interactsLeftForAchievement = 4
+
+[node name="YSort" type="YSort" parent="."]
+scale = Vector2( 1, 1 )
+
+[node name="YSort2" type="YSort" parent="."]
+
+[node name="BgLayerWindowOutside" type="Sprite" parent="YSort2"]
+position = Vector2( 961, 595 )
+texture = ExtResource( 27 )
+
+[node name="BgLayerWindowFrame" type="Sprite" parent="YSort2"]
+position = Vector2( 959, 599 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 29 )
+
+[node name="BgLayerBedsideTableWindow" type="Sprite" parent="YSort2"]
+position = Vector2( 772, 937 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 34 )
+
+[node name="BgLayerBed" type="Sprite" parent="YSort2"]
+position = Vector2( 894, 1076 )
+texture = ExtResource( 30 )
+
+[node name="BgLayerBedsideTableNear" type="Sprite" parent="YSort2"]
+position = Vector2( 674, 1309 )
+rotation = -0.0610865
+texture = ExtResource( 31 )
+
+[node name="BgLayerBedCabinet" type="Sprite" parent="YSort2"]
+position = Vector2( 1250, 1112 )
+texture = ExtResource( 33 )
+
+[node name="BgLayerWallFront" type="Sprite" parent="YSort2"]
+position = Vector2( 2479, 1033 )
+texture = ExtResource( 28 )
+
+[node name="BgLayerPcDesk" type="Sprite" parent="YSort2"]
+position = Vector2( 1777, 726 )
+texture = ExtResource( 36 )
+
+[node name="BgLayerCornerShelf" type="Sprite" parent="YSort2"]
+position = Vector2( 2079, 600 )
+texture = ExtResource( 35 )
+
+[node name="BgLayerChair" type="Sprite" parent="YSort2"]
+position = Vector2( 1826, 869 )
+texture = ExtResource( 38 )
+
+[node name="BgLayerCatTree" type="Sprite" parent="YSort2"]
+position = Vector2( 880, 629 )
+texture = ExtResource( 37 )
+
+[node name="BgLayerPlant" type="Sprite" parent="YSort2"]
+position = Vector2( 1091, 623 )
+texture = ExtResource( 39 )
+
+[node name="CatBed" parent="YSort2" instance=ExtResource( 20 )]
+position = Vector2( 1630, 943 )
+
+[node name="FriendCat" parent="YSort2" instance=ExtResource( 12 )]
+position = Vector2( 2269, 1178 )
+
+[node name="Coots" parent="YSort2" instance=ExtResource( 19 )]
+position = Vector2( 1330.77, 863.519 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Toy" parent="YSort2" instance=ExtResource( 26 )]
+position = Vector2( 1164.42, 791.559 )
+collision_layer = 2
+collision_mask = 2
+
+[node name="Achievements" type="Node2D" parent="."]
+visible = false
+script = ExtResource( 3 )
+achievements = [ ExtResource( 9 ) ]
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="ReferenceRect" parent="UILayer"]
+margin_right = 2880.0
+margin_bottom = 1620.0
+theme = ExtResource( 4 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect1" type="TextureRect" parent="UILayer/UI"]
+visible = false
+light_mask = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -118.0
+margin_right = 412.0
+texture = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="UILayer/UI/TextureRect1"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -263.0
+margin_top = -59.0
+margin_bottom = 59.0
+texture_progress = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="UILayer/UI"]
+visible = false
+light_mask = 0
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -240.468
+margin_right = 414.0
+margin_bottom = -120.468
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="UILayer/UI/TextureRect2"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -263.0
+margin_top = -59.0
+margin_bottom = 59.0
+texture_progress = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UILayer/UI"]
+margin_left = 186.667
+margin_top = 1093.33
+margin_right = 346.667
+margin_bottom = 1180.33
+custom_colors/default_color = Color( 0.32549, 0.0431373, 0.0431373, 1 )
+custom_fonts/mono_font = SubResource( 6 )
+text = "Time is "
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AchievementWindow" type="TextureRect" parent="UILayer/UI"]
+visible = false
+light_mask = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -409.0
+margin_top = -494.0
+margin_right = 492.0
+margin_bottom = 430.0
+theme = ExtResource( 4 )
+texture = ExtResource( 17 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloseMenuButton" type="TextureButton" parent="UILayer/UI/AchievementWindow"]
+margin_left = 777.0
+margin_top = 28.0
+margin_right = 866.0
+margin_bottom = 116.0
+texture_normal = ExtResource( 46 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AchievementCard" type="TextureRect" parent="UILayer/UI/AchievementWindow"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -281.5
+margin_top = -274.0
+margin_right = 263.5
+margin_bottom = 437.0
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="UILayer/UI/AchievementWindow"]
+margin_left = 38.0
+margin_top = 939.0
+margin_right = 437.0
+margin_bottom = 1050.0
+texture_normal = ExtResource( 45 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="TextureButton" parent="UILayer/UI/AchievementWindow"]
+margin_left = 475.0
+margin_top = 938.0
+margin_right = 874.0
+margin_bottom = 1049.0
+texture_normal = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="TextureRect" parent="UILayer/UI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -328.0
+margin_top = -434.0
+margin_right = 382.0
+margin_bottom = 295.0
+texture = ExtResource( 50 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Quit" type="TextureButton" parent="UILayer/UI/Settings"]
+margin_left = 168.0
+margin_top = 440.0
+margin_right = 567.0
+margin_bottom = 551.0
+texture_normal = ExtResource( 47 )
+
+[node name="Restart" type="TextureButton" parent="UILayer/UI/Settings"]
+margin_left = 168.0
+margin_top = 288.0
+margin_right = 567.0
+margin_bottom = 399.0
+texture_normal = ExtResource( 48 )
+
+[node name="Cancel" type="TextureButton" parent="UILayer/UI/Settings"]
+margin_left = 567.0
+margin_top = 28.0
+margin_right = 656.0
+margin_bottom = 116.0
+texture_normal = ExtResource( 49 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+volume_db = 9.579
+
+[node name="SoundEffectPlayer" parent="." instance=ExtResource( 21 )]
+
+[node name="SoundEffectManager" type="Node2D" parent="."]
+script = ExtResource( 5 )
+sounds = [ ExtResource( 23 ) ]
+
+[node name="BgLayerRoomFrame" type="Sprite" parent="."]
+position = Vector2( 2, 0 )
+texture = ExtResource( 32 )
+centered = false
+
+[node name="BgLightingAllMorning" type="Sprite" parent="."]
+visible = false
+modulate = Color( 0.286275, 0.505882, 0.121569, 1 )
+texture = SubResource( 9 )
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+scale = Vector2( 1.5, 1.5 )
+collision_layer = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PoolVector2Array( 476, 574, 535, 572, 557.333, 629.333, 541.333, 671.333, 788, 674, 795.333, 648.667, 889.333, 676.667, 875.333, 870.667, 790.667, 867.333, 776, 841, 496.667, 844.667, 491.333, 919.333, 402, 918.667, 400, 823, 390, 733 )
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="StaticBody2D"]
+build_mode = 1
+polygon = PoolVector2Array( 476, 574, 535, 572, 557.333, 629.333, 541.333, 671.333, 788, 674, 795.333, 648.667, 889.333, 676.667, 875.333, 870.667, 790.667, 867.333, 776, 841, 496.667, 844.667, 491.333, 919.333, 402, 918.667, 400, 823, 390, 733 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 508.667, 605.333, 549.333, 466, 534.667, 528.667, 603.333, 529.333, 666, 512.667, 661.333, 482.667, 670, 444, 713.333, 458.667, 725.333, 505.333, 761.333, 500.667, 760.667, 470.667, 779.333, 470, 806, 470, 1034.67, 470, 1037.33, 490.667, 1038, 558.667, 1039.33, 594, 1137.33, 594, 1148, 470.667, 1256.67, 472.667, 1261.33, 508.667, 1258.67, 533.333, 1314.67, 531.333, 1326.67, 464, 1350.67, 514, 1403.33, 514, 1418.67, 479.333, 1423.33, 477.333, 1472, 657.333, 1413.33, 654.667, 1415.33, 689.333, 1424.67, 722, 1495.33, 727.333, 1620, 724.667, 1536, 920.667, 392, 929, 392, 957, 1558, 928, 1645.33, 727.333, 1560, 500.667, 1352, 351, 1059, 381, 717, 379, 497.333, 454.667, 472, 516 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2( 14.6667, 9.33333 )
+polygon = PoolVector2Array( 1160, 582, 1175, 619, 1219, 629, 1245, 605, 1236, 560.667, 1208, 576.667, 1177.33, 558 )
+
+[node name="CollisionPolygon2D5" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( 1486, 726.667, 1459.33, 788, 1505.33, 846.667, 1544.67, 890, 1589.33, 772 )
+
+[connection signal="interacted" from="YSort2/Coots" to="YSort2/CatBed" method="_on_Coots_interacted"]
+[connection signal="button_down" from="UILayer/UI/AchievementWindow/CloseMenuButton" to="UILayer/UI/AchievementWindow" method="_on_CloseMenuButton_button_down"]
+[connection signal="button_down" from="UILayer/UI/Settings/Quit" to="UILayer/UI/Settings" method="_on_Quit_button_down"]
+[connection signal="button_down" from="UILayer/UI/Settings/Restart" to="." method="_on_Restart_button_down"]
+[connection signal="button_down" from="UILayer/UI/Settings/Cancel" to="UILayer/UI/Settings" method="_on_Cancel_button_down"]

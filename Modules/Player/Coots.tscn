@@ -1,0 +1,370 @@
+[gd_scene load_steps=47 format=2]
+
+[ext_resource path="res://Modules/Player/Coots.gd" type="Script" id=1]
+[ext_resource path="res://raw_assets/Coots/Coots_Sleep.png" type="Texture" id=2]
+[ext_resource path="res://raw_assets/light.png" type="Texture" id=3]
+[ext_resource path="res://raw_assets/Coots_sitting_0.1.png" type="Texture" id=4]
+[ext_resource path="res://raw_assets/Coots/Coots_walk_1.png" type="Texture" id=5]
+[ext_resource path="res://Modules/Player/Assets/Coots_walk_meow.png" type="Texture" id=6]
+[ext_resource path="res://raw_assets/Coots/Coots_idle_whack.png" type="Texture" id=7]
+[ext_resource path="res://Modules/Player/Assets/Coots_idle_meow.png" type="Texture" id=8]
+[ext_resource path="res://Modules/Player/Assets/Coots_walk_1.png" type="Texture" id=9]
+[ext_resource path="res://Modules/Player/Assets/Coots_idle.png" type="Texture" id=10]
+[ext_resource path="res://Modules/Player/Assets/Coots_walk_2.png" type="Texture" id=11]
+[ext_resource path="res://Modules/Player/Assets/Coots_walk_3.png" type="Texture" id=12]
+[ext_resource path="res://Modules/Player/Assets/Coots_walk_4.png" type="Texture" id=13]
+[ext_resource path="res://Modules/Player/Assets/Coots_consume_food.png" type="Texture" id=14]
+[ext_resource path="res://Modules/Player/Assets/Coots_consume.png" type="Texture" id=15]
+[ext_resource path="res://Modules/Player/Assets/Coots_consume_water.png" type="Texture" id=16]
+[ext_resource path="res://raw_assets/UI/UI_Sleepy.png" type="Texture" id=17]
+[ext_resource path="res://scripts/cus_resources/NiceCatAchievement.tres" type="Resource" id=18]
+[ext_resource path="res://scripts/cus_resources/NaughtyCatAchievement.tres" type="Resource" id=19]
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 48.0
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 15.0
+height = 98.0
+
+[sub_resource type="Animation" id=27]
+resource_name = "Consume"
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.9 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_oneshot_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHolder/Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.98, 1 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 10 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "IdleWhack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 7 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_oneshot_animation_end"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("SpriteHolder/Sprite:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("SpriteHolder/Sprite:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SpriteHolder/Sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.5, 0.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("SpriteHolder/Sprite:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 4 ) ]
+}
+
+[sub_resource type="Animation" id=19]
+resource_name = "Sleep"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 2 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Walking"
+length = 0.8
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("SpriteHolder/Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.18, 0.4, 0.58, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 9 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 5 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "Consume"
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "IdleWhack"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Sleep"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachine" id=14]
+states/Consume/node = SubResource( 28 )
+states/Consume/position = Vector2( 543.874, -177.842 )
+states/Idle/node = SubResource( 10 )
+states/Idle/position = Vector2( 727, 123 )
+states/IdleWhack/node = SubResource( 16 )
+states/IdleWhack/position = Vector2( 487, 270 )
+states/Sleep/node = SubResource( 20 )
+states/Sleep/position = Vector2( 166.874, 21.1579 )
+states/Walking/node = SubResource( 11 )
+states/Walking/position = Vector2( 487, -11 )
+transitions = [ "Idle", "Walking", SubResource( 12 ), "Walking", "Idle", SubResource( 13 ), "Idle", "IdleWhack", SubResource( 17 ), "IdleWhack", "Idle", SubResource( 18 ), "Walking", "Sleep", SubResource( 21 ), "Sleep", "Walking", SubResource( 22 ), "Idle", "Sleep", SubResource( 23 ), "Sleep", "Idle", SubResource( 24 ), "IdleWhack", "Sleep", SubResource( 25 ), "Sleep", "IdleWhack", SubResource( 26 ), "Idle", "Consume", SubResource( 29 ), "Walking", "Consume", SubResource( 30 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -66.126, -240.842 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=9]
+
+[node name="Coots" type="KinematicBody2D"]
+script = ExtResource( 1 )
+MAX_SPEED = 200
+ACCELERATION = 800
+FRICTION = 1000
+possibleAchievements = [ ExtResource( 18 ), ExtResource( 19 ) ]
+
+[node name="UiSleepy" type="Sprite" parent="."]
+position = Vector2( -176, -88 )
+texture = ExtResource( 17 )
+
+[node name="SpriteHolder" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpriteHolder"]
+texture = ExtResource( 4 )
+
+[node name="CootsIdleMeow" type="Sprite" parent="SpriteHolder/Sprite"]
+visible = false
+texture = ExtResource( 8 )
+
+[node name="CootsWalkMeow" type="Sprite" parent="SpriteHolder/Sprite"]
+visible = false
+texture = ExtResource( 6 )
+
+[node name="CootsConsumeFood" type="Sprite" parent="SpriteHolder/Sprite"]
+visible = false
+texture = ExtResource( 14 )
+
+[node name="CootsConsumeWater" type="Sprite" parent="SpriteHolder/Sprite"]
+visible = false
+texture = ExtResource( 16 )
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="InteractionCollider" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2( -64, -24 )
+shape = SubResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+enabled = false
+texture = ExtResource( 3 )
+texture_scale = 0.6
+shadow_enabled = true
+
+[node name="StatBar" type="ProgressBar" parent="."]
+visible = false
+modulate = Color( 0.678431, 0.12549, 0.12549, 1 )
+margin_left = -36.0
+margin_top = -79.0
+margin_right = 38.0
+margin_bottom = -65.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatBar1" type="ProgressBar" parent="."]
+visible = false
+modulate = Color( 0.129412, 0.913725, 0.823529, 1 )
+margin_left = -38.0
+margin_top = -65.0
+margin_right = 41.0
+margin_bottom = -49.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugText" type="RichTextLabel" parent="."]
+visible = false
+margin_left = -34.0
+margin_top = -121.0
+margin_right = 36.0
+margin_bottom = -80.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -8, 64 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Consume = SubResource( 27 )
+anims/Idle = SubResource( 2 )
+anims/IdleWhack = SubResource( 15 )
+anims/RESET = SubResource( 3 )
+anims/Sleep = SubResource( 19 )
+anims/Walking = SubResource( 4 )
+blend_times = [ "Idle", "RESET", 0.5, "Idle", "Walking", 2.0, "Walking", "Idle", 0.5, "Walking", "RESET", 0.5 ]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 14 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 9 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+light_mask = 0
+z_index = -15
+z_as_relative = false
+zoom = Vector2( 0.5, 0.5 )
+smoothing_enabled = true
+
+[connection signal="area_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_entered"]

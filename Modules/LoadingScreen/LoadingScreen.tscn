@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://theme/ThemeMain.tres" type="Theme" id=1]
+[ext_resource path="res://Modules/LoadingScreen/LoadingScreen.gd" type="Script" id=2]
+[ext_resource path="res://raw_assets/ControlsScreen/UI_Controls_Assembly.png" type="Texture" id=3]
+
+[node name="LoadingScreen" type="TextureRect"]
+margin_right = 2880.0
+margin_bottom = 1620.0
+theme = ExtResource( 1 )
+texture = ExtResource( 3 )
+expand = true
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
