@@ -1,0 +1,27 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_food.png" type="Texture" id=1]
+[ext_resource path="res://FoodBowl.gd" type="Script" id=2]
+[ext_resource path="res://scripts/cus_resources/TooMuchFoodAchievement.tres" type="Resource" id=3]
+[ext_resource path="res://scripts/cus_resources/TooMuchWaterAchievement.tres" type="Resource" id=4]
+[ext_resource path="res://raw_assets/Background-Scene/BG_Layer_Water.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 32.0
+
+[node name="FoodBowl" type="Sprite"]
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+possibleAchievements = [ ExtResource( 3 ), ExtResource( 4 ) ]
+possibleSprites = [ ExtResource( 1 ), ExtResource( 5 ) ]
+
+[node name="Location" type="Node2D" parent="."]
+position = Vector2( 40, -30 )
+
+[node name="Location2" type="Node2D" parent="."]
+position = Vector2( -40, -30 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )

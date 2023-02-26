@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://raw_assets/591660__seth_makes_sounds__relaxing-lofi.wav" type="AudioStream" id=1]
+
+[node name="MusicController" type="AudioStreamPlayer"]
+stream = ExtResource( 1 )
+volume_db = -12.224
+autoplay = true
